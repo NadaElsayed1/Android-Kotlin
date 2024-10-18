@@ -32,7 +32,7 @@ class FavProductsActivity : AppCompatActivity(), RemoveProductClickListener {
 //        viewModel = ViewModelProvider(this).get(MyViewModel::class.java)
 
         val myProductDAO: ProductDAO by lazy {
-            ProductDataBase.getInstatnce(this).getProductDao()
+            ProductDataBase.getInstance(this).getProductDao()
         }
         val apiService: ApiService = API.retrofitService
 

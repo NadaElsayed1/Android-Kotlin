@@ -3,50 +3,46 @@ package com.example.mvvm.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.example.mvvm.ProductState
 import com.example.mvvm.model.ProductDTO
 import com.example.mvvm.model.ProductRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class AllProductsViewModel(private val repository: ProductRepository) : ViewModel() {
 
-    private val _products = MutableStateFlow<List<ProductDTO>>(emptyList())
-    val products: StateFlow<List<ProductDTO>> = _products
-
-    private val _errorMessage = MutableStateFlow<String?>(null)
-    val errorMessage: StateFlow<String?> = _errorMessage
+    private val _productState = MutableStateFlow<ProductState>(ProductState.Loading)
+    val productState: StateFlow<ProductState> = _productState
 
     fun fetchProducts() {
         viewModelScope.launch {
-            repository.fetchProductsFromApi()
-                .catch { e ->
-                    _errorMessage.value = e.message
-                }
-                .collect { response ->
-                    if (response.isSuccessful) {
-                        response.body()?.getProductResponse()?.let {
-                            _products.value = it
-                        }
-                    } else {
-                        _errorMessage.value = "Error fetching products"
-                    }
-                }
-        }
-    }
+            _productState.value = ProductState.Loading // Emit Loading state
 
-    fun loadProductsFromDb() {
-        viewModelScope.launch {
-            repository.getAllProductsFromDb().collect { products ->
-                _products.value = products
+            try {
+                val response = repository.fetchProductsFromApi()
+                if (response.isSuccessful) {
+                    response.body()?.let { productResponse ->
+                        _productState.value = ProductState.Success(productResponse.getProductResponse())
+                    } ?: run {
+                        _productState.value = ProductState.Error("No products found")
+                    }
+                } else {
+                    _productState.value = ProductState.Error("Error fetching products: ${response.code()}")
+                }
+            } catch (e: Exception) {
+                _productState.value = ProductState.Error(e.message ?: "Unknown error")
             }
         }
     }
+
     suspend fun insertProductToDb(product: ProductDTO): Long {
         return repository.insertProductToDb(product)
     }
 }
+
 class AllProductsViewModelFactory(private val repository: ProductRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(AllProductsViewModel::class.java)) {
@@ -56,4 +52,3 @@ class AllProductsViewModelFactory(private val repository: ProductRepository) : V
         throw IllegalArgumentException("Unknown ViewModel class")
     }
 }
-

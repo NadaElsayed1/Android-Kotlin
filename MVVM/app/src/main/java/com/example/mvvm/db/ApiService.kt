@@ -5,20 +5,21 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+
 interface ApiService {
     @GET("products")
     suspend fun getProducts(): Response<ProductResponse>
 }
 
-object RetrofitHelper{
+object RetrofitHelper {
     private const val BASE_URL = "https://dummyjson.com/"
-    val retrofitInstance = Retrofit.Builder()
+    val retrofitInstance: Retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 }
 
-object API{
+object API {
     val retrofitService: ApiService by lazy {
         RetrofitHelper.retrofitInstance.create(ApiService::class.java)
     }
