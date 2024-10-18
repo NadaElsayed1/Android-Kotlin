@@ -24,10 +24,6 @@ class ProductRepository(
         return productDAO.insert(product)
     }
 
-    suspend fun updateProductInDb(product: ProductDTO) {
-        productDAO.update(product)
-    }
-
     suspend fun deleteProductFromDb(product: ProductDTO): Int {
         return productDAO.delete(product)
     }
