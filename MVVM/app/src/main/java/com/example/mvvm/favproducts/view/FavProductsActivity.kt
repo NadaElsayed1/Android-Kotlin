@@ -14,8 +14,8 @@ import com.example.mvvm.favproducts.viewmodel.MyViewModel
 import com.example.mvvm.favproducts.viewmodel.MyViewModelFactory
 import com.example.mvvm.model.ProductDTO
 import com.example.mvvm.model.ProductRepository
-import com.example.mvvm.service.API
-import com.example.mvvm.service.ApiService
+import com.example.mvvm.db.API
+import com.example.mvvm.db.ApiService
 import kotlinx.coroutines.launch
 
 class FavProductsActivity : AppCompatActivity(), RemoveProductClickListener {

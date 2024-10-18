@@ -15,7 +15,7 @@ import com.example.mvvm.viewmodel.AllProductsViewModelFactory
 import com.example.mvvm.db.ProductDataBase
 import com.example.mvvm.model.ProductDTO
 import com.example.mvvm.model.ProductRepository
-import com.example.mvvm.service.API.retrofitService
+import com.example.mvvm.db.API.retrofitService
 import kotlinx.coroutines.launch
 
 class AllProductsActivity : AppCompatActivity(), SelectProductClickListener {

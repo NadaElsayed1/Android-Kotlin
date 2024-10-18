@@ -1,7 +1,7 @@
 package com.example.mvvm.model
 
 import com.example.mvvm.db.ProductDAO
-import com.example.mvvm.service.ApiService
+import com.example.mvvm.db.ApiService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.Response
