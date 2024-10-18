@@ -17,14 +17,6 @@ class MainActivity : AppCompatActivity() {
         val btnAllProducts: Button = findViewById(R.id.AllProducts)
         val btnFavoriteProducts: Button = findViewById(R.id.FavoriteProducts)
         val btnExit: Button = findViewById(R.id.Exit)
-//        val image: ImageView = findViewById(R.id.imageView)
-//
-//
-//        Glide.with(context)
-//        {
-//            .load()
-//            .into()
-//        }
 
         btnAllProducts.setOnClickListener {
             val intent = Intent(this, AllProductsActivity::class.java)
