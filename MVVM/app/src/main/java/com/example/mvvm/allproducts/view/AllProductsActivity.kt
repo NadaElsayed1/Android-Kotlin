@@ -1,4 +1,4 @@
-package com.example.mvvm.allproducts.view
+package com.example.mvvm.view
 
 import android.os.Bundle
 import android.util.Log
@@ -10,8 +10,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mvvm.R
-import com.example.mvvm.allproducts.view.viewmodel.AllProductsViewModel
-import com.example.mvvm.allproducts.view.viewmodel.AllProductsViewModelFactory
+import com.example.mvvm.viewmodel.AllProductsViewModel
+import com.example.mvvm.viewmodel.AllProductsViewModelFactory
 import com.example.mvvm.db.ProductDataBase
 import com.example.mvvm.model.ProductDTO
 import com.example.mvvm.model.ProductRepository

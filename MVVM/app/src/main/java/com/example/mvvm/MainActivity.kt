@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.example.mvvm.allproducts.view.AllProductsActivity
+import com.example.mvvm.view.AllProductsActivity
 import com.example.mvvm.favproducts.view.FavProductsActivity
 
 class MainActivity : AppCompatActivity() {

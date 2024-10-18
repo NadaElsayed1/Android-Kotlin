@@ -1,4 +1,4 @@
-package com.example.mvvm.allproducts.view
+package com.example.mvvm.view
 
 import com.example.mvvm.model.ProductDTO
 

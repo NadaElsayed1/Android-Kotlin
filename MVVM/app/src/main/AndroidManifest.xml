@@ -18,7 +18,7 @@
             android:name=".favproducts.view.FavProductsActivity"
             android:exported="false" />
         <activity
-            android:name=".allproducts.view.AllProductsActivity"
+            android:name=".view.AllProductsActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

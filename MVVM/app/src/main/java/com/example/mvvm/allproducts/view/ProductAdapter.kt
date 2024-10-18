@@ -1,4 +1,4 @@
-package com.example.mvvm.allproducts.view
+package com.example.mvvm.view
 
 import android.content.Context
 import android.view.LayoutInflater
