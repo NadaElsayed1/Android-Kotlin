@@ -3,6 +3,7 @@ package com.example.mvvm.model
 import com.example.mvvm.db.ProductDAO
 import com.example.mvvm.service.ApiService
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import retrofit2.Response
 
 class ProductRepository(
@@ -14,8 +15,9 @@ class ProductRepository(
         return productDAO.getAll()
     }
 
-    suspend fun fetchProductsFromApi(): Response<ProductResponse> {
-        return apiService.getProducts()
+    suspend fun fetchProductsFromApi(): Flow<Response<ProductResponse>> {
+        return flow{
+            emit(apiService.getProducts()) }
     }
 
     suspend fun insertProductToDb(product: ProductDTO): Long {
