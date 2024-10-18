@@ -19,7 +19,7 @@ class AllProductsViewModel(private val repository: ProductRepository) : ViewMode
 
     fun fetchProducts() {
         viewModelScope.launch {
-            _productState.value = ProductState.Loading // Emit Loading state
+            _productState.value = ProductState.Loading
 
             try {
                 val response = repository.fetchProductsFromApi()

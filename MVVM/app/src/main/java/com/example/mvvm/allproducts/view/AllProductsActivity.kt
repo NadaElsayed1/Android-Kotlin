@@ -33,8 +33,7 @@ class AllProductsActivity : AppCompatActivity(), SelectProductClickListener {
         setContentView(R.layout.activity_all_products)
 
         val rvProduct: RecyclerView = findViewById(R.id.rvproducts)
-        progressBar = findViewById(R.id.progressBar) // Initialize ProgressBar
-
+        progressBar = findViewById(R.id.progressBar) 
         productAdapter = ListProductAdapter(this, this)
         rvProduct.adapter = productAdapter
         rvProduct.layoutManager = LinearLayoutManager(this)
@@ -43,15 +42,15 @@ class AllProductsActivity : AppCompatActivity(), SelectProductClickListener {
             viewModel.productState.collect { state ->
                 when (state) {
                     is ProductState.Loading -> {
-                        progressBar.visibility = View.VISIBLE // Show loading indicator
+                        progressBar.visibility = View.VISIBLE
                     }
                     is ProductState.Success -> {
                         productAdapter.submitList(state.products)
-                        progressBar.visibility = View.GONE // Hide loading indicator
+                        progressBar.visibility = View.GONE
                     }
                     is ProductState.Error -> {
                         Toast.makeText(this@AllProductsActivity, state.message, Toast.LENGTH_SHORT).show()
-                        progressBar.visibility = View.GONE // Hide loading indicator
+                        progressBar.visibility = View.GONE
                     }
                 }
             }
